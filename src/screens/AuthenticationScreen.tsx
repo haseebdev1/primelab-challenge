@@ -15,9 +15,15 @@ import Input from '../components/Input';
 import ActionButton from '../components/ActionButton';
 import Divider from '../components/Divider';
 import {Formik} from 'formik';
+import {useDispatch} from 'react-redux';
+import {AppDispatch} from '../redux/store';
+import {GET_USERS} from '../redux/reducers/users/actions';
 
 const AuthenticationScreen: React.FC = () => {
-  useEffect(() => {}, []);
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch({type: GET_USERS});
+  }, []);
   return (
     <KeyboardAvoidingView
       style={styles.keyboardAvoidingView}
