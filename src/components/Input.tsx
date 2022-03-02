@@ -1,12 +1,24 @@
 import React from 'react';
 import {TextInput, StyleSheet} from 'react-native';
 import colors from '../constants/colors';
-
+import {useFormikContext} from 'formik';
 interface Props {
+  name: string;
   placeholder: string;
 }
-const Input: React.FC<Props> = ({placeholder}) => {
-  return <TextInput placeholder={placeholder} style={styles.input} />;
+const Input: React.FC<Props> = ({name, placeholder}) => {
+  const {values, setFieldValue} = useFormikContext<{[key: string]: string}>();
+
+  return (
+    <TextInput
+      placeholder={placeholder}
+      style={styles.input}
+      value={values[name]}
+      onChangeText={value => {
+        setFieldValue(name, value);
+      }}
+    />
+  );
 };
 
 const styles = StyleSheet.create({

@@ -14,6 +14,7 @@ import ChipButton from '../components/ChipButton';
 import Input from '../components/Input';
 import ActionButton from '../components/ActionButton';
 import Divider from '../components/Divider';
+import {Formik} from 'formik';
 
 const AuthenticationScreen: React.FC = () => {
   useEffect(() => {}, []);
@@ -29,22 +30,31 @@ const AuthenticationScreen: React.FC = () => {
             <ChipButton title="Email" onPress={() => {}} isActive />
             <ChipButton title="Phone" onPress={() => {}} isActive />
           </View>
-          <View style={styles.inputWrapper}>
-            <Input placeholder="Email Address" />
-          </View>
-          <View style={styles.buttonWrapper}>
-            <ActionButton title="Get Started" disabled />
-          </View>
+          <Formik initialValues={{email: ''}} onSubmit={() => {}}>
+            <>
+              <View style={styles.inputWrapper}>
+                <Input name="email" placeholder="Email Address" />
+              </View>
+              <View style={styles.buttonWrapper}>
+                <ActionButton title="Get Started" disabled />
+              </View>
+            </>
+          </Formik>
+
           <Divider />
 
           <Text style={styles.smallText}>Already have Near Account?</Text>
 
-          <View style={styles.inputWrapper}>
-            <Input placeholder="Wallet Name" />
-          </View>
-          <View style={styles.buttonWrapper}>
-            <ActionButton title="Login" />
-          </View>
+          <Formik initialValues={{name: ''}} onSubmit={() => {}}>
+            <>
+              <View style={styles.inputWrapper}>
+                <Input name="name" placeholder="Wallet Name" />
+              </View>
+              <View style={styles.buttonWrapper}>
+                <ActionButton title="Login" />
+              </View>
+            </>
+          </Formik>
           <SafeAreaView>
             <Text style={styles.tosText}>
               by clicking continue you must agree to near labs Terms &
